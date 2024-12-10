@@ -1,3 +1,23 @@
+class Library:
+    def view_all_books(self):
+        print("\nAll Books:")
+        for book in Book.book_list:
+            book.view_book_info()
+
+    def borrow_book(self, book_id):
+        for book in Book.book_list:
+            if book._book_id == book_id:
+                book.borrow_book()
+                return
+        print("Invalid Book ID.")
+
+    def return_book(self, book_id):
+        for book in Book.book_list:
+            if book._book_id == book_id:
+                book.return_book()
+                return
+        print("Invalid Book ID.")
+
 class Book:
     total_books = 0
     book_list = []
@@ -27,26 +47,6 @@ class Book:
     def view_book_info(self):
         availability_status = "Available" if self._availability else "Not Available"
         print(f"Book ID: {self._book_id}, " f"Title: {self._title}, " f"Author: {self._author}, " f"Availability: {availability_status}")
-
-class Library:
-    def borrow_book(self, book_id):
-        for book in Book.book_list:
-            if book._book_id == book_id:
-                book.borrow_book()
-                return
-        print("Invalid Book ID.")
-
-    def return_book(self, book_id):
-        for book in Book.book_list:
-            if book._book_id == book_id:
-                book.return_book()
-                return
-        print("Invalid Book ID.")
-
-    def view_all_books(self):
-        print("\nAll Books:")
-        for book in Book.book_list:
-            book.view_book_info()
 
 if __name__ == "__main__":
     book1 = Book(101, "The Lord of the Rings", "J.R.R. Tolkien")
